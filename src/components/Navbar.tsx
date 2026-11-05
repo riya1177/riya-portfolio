@@ -41,7 +41,7 @@ export const Navbar: React.FC = () => {
     setIsOpen(false);
     if (!isHomePage && href.startsWith('#')) {
       e.preventDefault();
-      window.location.href = '/' + href;
+      window.location.href = `${import.meta.env.BASE_URL}${href}`;
       return;
     }
 
@@ -91,7 +91,7 @@ export const Navbar: React.FC = () => {
               return (
                 <a
                   key={item.label}
-                  href={isHomePage ? item.href : `/${item.href}`}
+                  href={isHomePage ? item.href : `${import.meta.env.BASE_URL}${item.href}`}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#168BFF] ${
                     isActive
@@ -150,7 +150,7 @@ export const Navbar: React.FC = () => {
                   return (
                     <a
                       key={item.label}
-                      href={isHomePage ? item.href : `/${item.href}`}
+                      href={isHomePage ? item.href : `${import.meta.env.BASE_URL}${item.href}`}
                       onClick={(e) => handleNavClick(e, item.href)}
                       className={`text-sm font-medium py-2.5 transition-colors flex items-center justify-between ${
                         isActive ? 'text-[#4DB8FF] font-semibold' : 'text-[#F5F8FF] hover:text-[#4DB8FF]'

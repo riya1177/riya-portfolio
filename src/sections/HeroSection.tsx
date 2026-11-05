@@ -59,7 +59,7 @@ export const HeroSection: React.FC = () => {
               <div className="relative aspect-[4/5] w-full rounded-2xl border border-[#168BFF]/35 bg-[#0D1424] overflow-hidden shadow-[0_0_30px_rgba(22,139,255,0.18)] group-hover:border-[#4DB8FF]/60 transition-all duration-300">
                 {!imgError ? (
                   <img
-                    src="/riya.jpeg"
+                    src={`${import.meta.env.BASE_URL}riya.jpeg`}
                     alt="Riya Kumari"
                     className="w-full h-full object-cover object-center filter saturate-[1.03] transition-transform duration-500 group-hover:scale-[1.02]"
                     onError={() => setImgError(true)}

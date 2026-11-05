@@ -8,8 +8,11 @@ import { CaseStudyPage } from './pages/CaseStudyPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App: React.FC = () => {
+  // Normalize basename: remove trailing slash so React Router matches both '/riya-portfolio/' and '/riya-portfolio'
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
   return (
-    <Router basename="/riya-portfolio">
+    <Router basename={basename}>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-[#070B14] text-[#F5F8FF] font-sans selection:bg-[#168BFF]/30 selection:text-[#4DB8FF]">
         <Navbar />
