@@ -1,15 +1,174 @@
-import { ProjectCaseStudy, SkillGroup } from '../types';
+import { 
+  ProjectItem, 
+  SkillCategory, 
+  CertificateItem, 
+  ProjectCaseStudy, 
+  SkillGroup 
+} from '../types';
 
+export const projectsData: ProjectItem[] = [
+  {
+    id: 'private-cloud-storage',
+    title: 'Private Cloud Storage Platform',
+    category: 'Cloud Storage & Systems',
+    description:
+      'A self-hosted personal cloud vault engineered for secure file management. Features client-side clarity, server-side symmetric encryption (Fernet), and a simulated RAID-1 redundant storage pool across mirrored disk volumes.',
+    technologies: [
+      'React',
+      'FastAPI',
+      'Python',
+      'SQLite',
+      'SQLAlchemy',
+      'Redis',
+      'Docker',
+      'Fernet Encryption'
+    ],
+    keyFeatures: [
+      'Zero-knowledge symmetric file encryption at rest using Python Fernet',
+      'Simulated RAID-1 real-time mirrored disk volumes for data redundancy',
+      'Chunked asynchronous upload pipeline with precise byte-level progress',
+      'Redis in-memory caching for sub-millisecond folder tree queries',
+      'Dockerized architecture for seamless local and cloud deployment'
+    ],
+    githubUrl: 'https://github.com/riya1177',
+    caseStudyUrl: '/projects/private-cloud-storage',
+    featured: true,
+  },
+  {
+    id: 'ai-interview-coach',
+    title: 'AI Interview Coach',
+    category: 'AI Application & Full-Stack',
+    description:
+      'An interactive preparation application designed to help candidates practice technical and behavioral questions out loud. Uses speech recognition to transcribe answers in real time and evaluates structure using the STAR framework.',
+    technologies: [
+      'Python',
+      'FastAPI',
+      'React',
+      'Tailwind CSS',
+      'Google Gemini API',
+      'Web Speech API'
+    ],
+    keyFeatures: [
+      'Live in-browser speech recognition and transcription',
+      'Automated STAR framework analysis (Situation, Task, Action, Result)',
+      'Side-by-side phrasing critique for impactful communication',
+      'Visual audio waveform feedback for confidence and pacing'
+    ],
+    githubUrl: 'https://github.com/riya1177',
+    caseStudyUrl: '/projects/ai-interview-coach',
+    featured: false,
+  },
+  {
+    id: 'crypto-portfolio-tracker',
+    title: 'Crypto Portfolio Tracker',
+    category: 'Backend & Data Analytics',
+    description:
+      'A full-stack portfolio management application for tracking cryptocurrency assets, recording buy/sell transactions, computing cost-basis valuations, and visualizing profit and loss performance.',
+    technologies: [
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'JavaScript',
+      'Chart.js'
+    ],
+    keyFeatures: [
+      'Transaction logging and automated weighted cost-basis calculations',
+      'Real-time asset valuation with responsive interactive charts',
+      'Detailed breakdown of realized vs. unrealized profit & loss',
+      'REST API architecture with MongoDB schema validation'
+    ],
+    githubUrl: 'https://github.com/riya1177',
+    featured: false,
+  },
+  {
+    id: 'portfolio-website',
+    title: 'Personal Portfolio Website',
+    category: 'Frontend Engineering',
+    description:
+      'My personal corner of the web. Designed to be clean, fast, and content-focused with dark navy aesthetics, subtle blue glows, interactive case studies, and responsive typography.',
+    technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
+    keyFeatures: [
+      'Custom minimalist dark aesthetic with refined blue accents',
+      'Smooth scroll-spy navigation with URL hash synchronisation',
+      'Interactive project sandboxes and full architectural case studies',
+      'Lightweight bundle with zero extraneous dependencies'
+    ],
+    githubUrl: 'https://github.com/riya1177/riya-portfolio',
+    liveUrl: '#hero',
+    featured: false,
+  },
+];
+
+export const skillCategoriesData: SkillCategory[] = [
+  {
+    title: 'Programming Languages',
+    skills: ['C++', 'C', 'Python', 'JavaScript', 'TypeScript'],
+  },
+  {
+    title: 'Frontend Development',
+    skills: ['React', 'Vite', 'HTML5', 'CSS3', 'Tailwind CSS'],
+  },
+  {
+    title: 'Backend Development',
+    skills: ['FastAPI', 'Node.js', 'Express.js', 'REST APIs'],
+  },
+  {
+    title: 'Databases',
+    skills: ['SQLite', 'PostgreSQL', 'MongoDB', 'SQLAlchemy'],
+  },
+  {
+    title: 'Cloud & DevOps',
+    skills: ['AWS', 'Docker', 'Redis'],
+  },
+  {
+    title: 'Tools',
+    skills: ['Git', 'GitHub', 'Postman', 'Linux / Bash'],
+  },
+];
+
+export const certificatesData: CertificateItem[] = [
+  {
+    title: 'ServiceNow Certified System Administrator (CSA)',
+    issuer: 'ServiceNow',
+    badgeText: 'Systems Administration',
+    description:
+      'Demonstrates practical proficiency in configuring, customizing, and administering ServiceNow instances, managing workflows, users, and core data architecture.',
+    skills: ['ServiceNow', 'System Administration', 'Workflows', 'ITSM'],
+    isVerified: true,
+  },
+  {
+    title: 'ServiceNow Certified Application Developer (CAD)',
+    issuer: 'ServiceNow',
+    badgeText: 'Application Development',
+    description:
+      'Validates advanced ability to design and build cloud applications on the Now Platform, write custom client/server scripts, implement business rules, and secure data models.',
+    link: 'https://drive.google.com/drive/folders/1RdV5Bb8-3uaBWCVTC9Tc-dVFmEBcnRGN',
+    skills: ['ServiceNow', 'Scripting', 'Business Rules', 'Application Design'],
+    isVerified: true,
+  },
+  {
+    title: 'AWS Certified Cloud Practitioner',
+    issuer: 'Amazon Web Services',
+    badgeText: 'Cloud Computing',
+    description:
+      'Validates foundational understanding of AWS Cloud infrastructure, security standards, cloud architectural patterns, computing, storage, and billing models.',
+    link: 'https://drive.google.com/drive/u/1/folders/1WGxFcex98KWf9b776JbrLb1YaU517HWS',
+    skills: ['AWS Cloud', 'Cloud Architecture', 'Security & Compliance', 'EC2 & S3'],
+    isVerified: true,
+  },
+];
+
+// Preserved detailed case studies for dedicated project pages
 export const caseStudies: ProjectCaseStudy[] = [
   {
     id: 'cloud-storage',
     slug: 'private-cloud-storage',
     title: 'Private Cloud Storage',
     subtitle: 'A self-hosted personal file vault with client-side simplicity and server-side encryption',
-    role: 'Full-Stack Developer (Final-Year Project)',
-    timeline: 'Final-Year Project · 2026',
-    category: 'Full-Stack & UX Architecture',
-    description: 'A privacy-focused personal cloud storage platform designed to give users greater control over their files while providing a simple and intuitive file management experience.',
+    role: 'Full-Stack Developer',
+    timeline: 'Personal Project · 2026',
+    category: 'Cloud Storage & Systems',
+    description: 'A privacy-focused personal cloud storage platform designed to give users control over their files while providing a simple, intuitive file management experience.',
     technologies: [
       'React',
       'TypeScript',
@@ -22,15 +181,11 @@ export const caseStudies: ProjectCaseStudy[] = [
       'Docker',
       'Fernet Encryption'
     ],
-    githubUrl: 'https://github.com/your-username/private-cloud-storage',
+    githubUrl: 'https://github.com/riya1177',
     liveUrl: '#demo',
 
-    // 1. Overview
-    overview: `This was my final-year academic project. I wanted to build something I would personally use every single day: a personal cloud storage drive that keeps my files private without forcing me to deal with clumsy command-line tools or terminal commands.
+    overview: `This project was developed to provide a private, reliable personal cloud storage platform. Commercial cloud services often hold the master keys to user files on their own infrastructure. My goal was to combine the clean, modern feel of a web drive (drag-and-drop uploads, instant folder navigation, search, and storage usage breakdowns) with real symmetric encryption using Python's Fernet cryptography and a simulated RAID-1 redundancy pool.`,
 
-Commercial cloud services are convenient, but they store files unencrypted or hold the master keys on their own servers. Traditional encrypted backup tools, on the other hand, are often frustratingly slow and difficult to use. My goal was to combine the clean, modern feel of a web drive (drag-and-drop uploads, instant folder navigation, search, and storage usage breakdowns) with real symmetric encryption using Python's Fernet cryptography.`,
-
-    // 2. The problem I wanted to solve
     problemIWantedToSolve: {
       coreProblem: 'Most personal cloud storage options make you choose between user-friendly convenience and real privacy.',
       context: 'When looking at self-hosted or privacy-focused storage solutions, I noticed two extremes: mainstream commercial drives where you do not control encryption keys, or open-source cryptographic command-line tools that lack modern web interactions.',
@@ -42,9 +197,8 @@ Commercial cloud services are convenient, but they store files unencrypted or ho
       ]
     },
 
-    // 3. My approach
     myApproach: {
-      summary: 'I approached the project by prioritizing the everyday file browsing experience first, then integrating encryption as a seamless layer underneath.',
+      summary: 'I approached the project by prioritizing the everyday file browsing experience first, then integrating encryption and RAID-1 replication as a seamless layer underneath.',
       steps: [
         {
           number: '01',
@@ -64,7 +218,6 @@ Commercial cloud services are convenient, but they store files unencrypted or ho
       ]
     },
 
-    // 4. Design decisions
     designDecisions: [
       {
         title: 'Clear security indicators over cryptographic jargon',
@@ -86,12 +239,12 @@ Commercial cloud services are convenient, but they store files unencrypted or ho
       }
     ],
 
-    // 5. Technical implementation
     technicalImplementation: {
-      overview: 'A React 18 single-page application built with TypeScript and Tailwind CSS, communicating with an asynchronous FastAPI backend over REST endpoints, containerized with Docker and Redis.',
+      overview: 'A React single-page application built with TypeScript and Tailwind CSS, communicating with an asynchronous FastAPI backend over REST endpoints, containerized with Docker and Redis.',
       architecturePoints: [
         'Custom React hook (useFileUploadQueue) managing chunked uploads and tracking precise byte progress without freezing the main thread.',
         'Python cryptography library utilizing Fernet symmetric key tokens to encrypt file data at rest on disk.',
+        'Simulated RAID-1 mirror storage pool ensuring real-time multi-disk file redundancy.',
         'SQLAlchemy ORM with SQLite for fast metadata queries (file size, MIME type, upload timestamps, folder hierarchy).',
         'Redis in-memory caching to store recent directory hierarchies and avoid redundant database reads.',
         'Docker compose setup for reproducible local deployment across development and testing environments.'
@@ -111,7 +264,6 @@ Commercial cloud services are convenient, but they store files unencrypted or ho
       ]
     },
 
-    // 6. What I learned
     whatILearned: [
       'Managing binary streams in JavaScript: How to handle file blobs and chunked multipart uploads without consuming excessive browser memory.',
       'State management trade-offs: Keeping multi-file selection state synchronized across folder navigations and view mode toggles.',
@@ -119,7 +271,6 @@ Commercial cloud services are convenient, but they store files unencrypted or ho
       'Responsive design details: Designing touch targets that work as well on mobile screens as they do with a mouse on desktop.'
     ],
 
-    // 7. Next steps
     nextSteps: [
       'Client-side WebAssembly encryption so the backend never sees plaintext bytes even in memory.',
       'Searchable encrypted metadata indexing so users can filter files by tags without decrypting entire archives.',
@@ -132,47 +283,43 @@ Commercial cloud services are convenient, but they store files unencrypted or ho
     slug: 'ai-interview-coach',
     title: 'AI Interview Coach',
     subtitle: 'An interactive preparation tool designed to help candidates practice answers out loud and build speaking confidence',
-    role: 'Frontend Engineer & UI Designer',
-    timeline: 'Independent Prototype · 2026',
-    category: 'Product Design & Frontend Prototype',
+    role: 'Frontend & Full-Stack Developer',
+    timeline: 'Personal Project · 2026',
+    category: 'AI Application & Full-Stack',
     description: 'An AI-powered interview preparation experience designed to help candidates practice interviews, receive actionable feedback, and improve their confidence.',
     technologies: [
+      'Python',
+      'FastAPI',
       'React',
-      'TypeScript',
       'Tailwind CSS',
+      'Google Gemini API',
       'Web Speech API',
       'Framer Motion',
-      'Lucide React',
-      'Context API'
+      'Lucide React'
     ],
-    githubUrl: 'https://github.com/your-username/ai-interview-coach',
+    githubUrl: 'https://github.com/riya1177',
     liveUrl: '#demo',
 
-    // 1. Overview
-    overview: `Preparing for technical and behavioral interviews is often intimidating. Most people prepare by reading lists of questions in their head, but speaking your thoughts out loud under timed conditions is a completely different skill.
+    overview: `Preparing for technical and behavioral interviews is often intimidating. Speaking your thoughts out loud under timed conditions requires deliberate practice. I built the AI Interview Coach as an interactive application to help candidates practice speaking out loud in a low-pressure environment, combining speech recognition with structured answer analysis based on the STAR framework (Situation, Task, Action, Result) powered by the Google Gemini API.`,
 
-I built the AI Interview Coach as an interactive frontend prototype to help candidates practice speaking out loud in a low-pressure environment. It combines speech recognition with structured answer analysis based on the STAR framework (Situation, Task, Action, Result), highlighting concrete ways to rephrase answers for greater clarity and impact.`,
-
-    // 2. The problem I wanted to solve
     problemIWantedToSolve: {
       coreProblem: 'Candidates often practice passively in their heads and struggle when speaking out loud during real interviews.',
-      context: 'Mock interviews with friends are hard to schedule regularly, and generic AI chat interfaces provide walls of text that do not help you understand pacing or answer structure.',
+      context: 'Mock interviews with peers are hard to schedule regularly, and generic AI chat interfaces provide walls of text that do not help you understand pacing or answer structure.',
       keyFrustrations: [
         'Speaking out loud feels awkward without a structured prompt and visual pacing feedback.',
         'Long AI feedback paragraphs overwhelm candidates instead of giving bite-sized, actionable takeaways.',
         'Candidates rarely know if their answers followed a clear structural framework or rambled on.',
-        'High-anxiety interfaces (like flashing red recording dots) can make speaking practice more stressful rather than supportive.'
+        'High-anxiety interfaces can make speaking practice more stressful rather than supportive.'
       ]
     },
 
-    // 3. My approach
     myApproach: {
       summary: 'I focused on creating a calming, focused practice space with clear visual cues and a diagnostic feedback scorecard.',
       steps: [
         {
           number: '01',
           title: 'Configurable practice tracks',
-          description: 'Allowed candidates to choose their focus (Frontend & UX, React Architecture, or General Behavioral) so questions match real role expectations.'
+          description: 'Allowed candidates to choose their focus (Cloud Computing, Frontend & React, System Design, Behavioral) so questions match real role expectations.'
         },
         {
           number: '02',
@@ -182,16 +329,15 @@ I built the AI Interview Coach as an interactive frontend prototype to help cand
         {
           number: '03',
           title: 'STAR framework evaluation layout',
-          description: 'Deconstructed candidate answers into Situation, Task, Action, and Result cards, accompanied by a side-by-side phrasing comparison.'
+          description: 'Deconstructed candidate answers into Situation, Task, Action, and Result cards, accompanied by concrete phrasing improvements.'
         }
       ]
     },
 
-    // 4. Design decisions
     designDecisions: [
       {
         title: 'Structured STAR breakdown over generic scores',
-        situation: 'Giving a single arbitrary score (like 7/10) doesn’t tell a candidate what to improve.',
+        situation: 'Giving a single arbitrary score (like 7/10) does not tell a candidate what to improve.',
         decision: 'I created an editorial scorecard breaking the answer into Situation, Task, Action, and Result indicators with specific tips for each.',
         outcome: 'Candidates can immediately see whether they missed describing the tangible outcome or spent too long setting up the backstory.'
       },
@@ -209,14 +355,13 @@ I built the AI Interview Coach as an interactive frontend prototype to help cand
       }
     ],
 
-    // 5. Technical implementation
     technicalImplementation: {
-      overview: 'A responsive React and TypeScript single-page application utilizing the browser Web Speech API for real-time speech transcription, Framer Motion for restrained interface animations, and a modular state machine.',
+      overview: 'A responsive React and TypeScript single-page application utilizing the browser Web Speech API for real-time speech transcription, FastAPI backend integration with Google Gemini API, and Framer Motion for restrained interface animations.',
       architecturePoints: [
         'Web Speech API integration with custom error boundaries to handle microphone permissions and browser fallback states gracefully.',
+        'FastAPI endpoints for prompt orchestration and structured JSON schema responses from the Gemini API.',
         'Rehearsal state machine managing transitions across configuring, listening, transcribing, and reviewing.',
-        'Interactive STAR visualization component designed with responsive Tailwind utility patterns.',
-        'Local state persistence allowing users to review their previous practice attempts during the same session.'
+        'Interactive STAR visualization component designed with responsive Tailwind utility patterns.'
       ],
       codeHighlights: [
         {
@@ -232,17 +377,15 @@ I built the AI Interview Coach as an interactive frontend prototype to help cand
       ]
     },
 
-    // 6. What I learned
     whatILearned: [
       'Web Speech API realities: Handling browser compatibility differences and silence timeouts during live speech recognition.',
       'Information architecture for feedback: Learning that breaking critique into bite-sized visual chunks prevents user fatigue.',
       'Micro-interactions: How subtle animations (like waveform pulses) provide essential reassurance that the application is listening without distracting from the prompt.'
     ],
 
-    // 7. Next steps
     nextSteps: [
       'Connecting to an offline-capable open-weights LLM using WebLLM for private, local feedback generation.',
-      'Custom question banks specifically tailored for frontend and design systems interviews at companies like Demandbase.',
+      'Custom question banks specifically tailored for Cloud Engineering and Full-Stack interviews.',
       'Audio recording playback with synchronized transcript highlighting.'
     ]
   }
@@ -250,44 +393,27 @@ I built the AI Interview Coach as an interactive frontend prototype to help cand
 
 export const skillsList: SkillGroup[] = [
   {
-    category: 'Frontend Engineering (Primary Focus)',
-    skills: [
-      'React',
-      'TypeScript',
-      'JavaScript (ES6+)',
-      'HTML5 & Semantic Markup',
-      'CSS3 & Modern Layouts',
-      'Tailwind CSS',
-      'Component Architecture',
-      'Responsive Web Design',
-      'State Management'
-    ]
+    category: 'Programming Languages',
+    skills: ['C++', 'C', 'Python', 'JavaScript', 'TypeScript']
   },
   {
-    category: 'Backend APIs & Databases',
-    skills: [
-      'Python',
-      'FastAPI',
-      'SQL (SQLite / PostgreSQL)',
-      'SQLAlchemy ORM',
-      'RESTful API Design',
-      'Database Modeling',
-      'Redis Caching',
-      'Backend Integration'
-    ]
+    category: 'Frontend Development',
+    skills: ['React', 'Vite', 'HTML5', 'CSS3', 'Tailwind CSS']
   },
   {
-    category: 'UI/UX & Developer Tools',
-    skills: [
-      'UI/UX Principles',
-      'Product Thinking',
-      'Design Systems & Tokens',
-      'Wireframing & Prototyping',
-      'Figma',
-      'Accessibility (WCAG 2.1)',
-      'Git & GitHub',
-      'Docker Basics',
-      'Vite Tooling'
-    ]
+    category: 'Backend Development',
+    skills: ['FastAPI', 'Node.js', 'Express.js', 'REST APIs']
+  },
+  {
+    category: 'Databases',
+    skills: ['SQLite', 'PostgreSQL', 'MongoDB', 'SQLAlchemy']
+  },
+  {
+    category: 'Cloud & DevOps',
+    skills: ['AWS', 'Docker', 'Redis']
+  },
+  {
+    category: 'Tools',
+    skills: ['Git', 'GitHub', 'Postman', 'Linux / Bash']
   }
 ];

@@ -1,149 +1,80 @@
 import React from 'react';
-import { Sparkles, Code2, Database, Layout } from 'lucide-react';
-import { skillsList } from '../data/portfolioData';
-import { Badge } from '../components/Badge';
+import { motion } from 'framer-motion';
+import { Cloud, Code2, Cpu } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-24 md:py-32 bg-[#070B14] border-t border-[#1B2A47]/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section 
+      id="about" 
+      className="py-20 md:py-28 bg-[#070B14] border-t border-[#1B2A47]/50 relative overflow-hidden"
+    >
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         
         {/* Section Header */}
-        <div className="max-w-2xl space-y-3">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#4DB8FF] font-semibold">
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#4DB8FF] font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-[#168BFF]" />
             <span>ABOUT ME</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#F5F8FF]">
-            A bit about me.
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F5F8FF]">
+            A bit about my work.
           </h2>
-        </div>
-
-        {/* Personal & Concise Narrative */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          
-          {/* Left Column: Story */}
-          <div className="lg:col-span-7 space-y-5 text-base sm:text-lg text-[#A5B4CC] leading-relaxed">
-            <p>
-              I'm a computer science student and <strong className="text-[#F5F8FF] font-semibold">frontend-focused full-stack developer</strong>. My primary focus is on frontend engineering — building clean, intuitive, and responsive user experiences using <strong className="text-[#4DB8FF] font-semibold">React</strong> and <strong className="text-[#4DB8FF] font-semibold">TypeScript</strong>.
-            </p>
-
-            <p>
-              While the frontend is where I spend most of my energy, I also develop backend services and work with APIs, databases, and <strong className="text-[#F5F8FF] font-semibold">Python (FastAPI, SQL)</strong>. Understanding how data is stored, queried, and delivered across the stack allows me to design cleaner API contracts, avoid frontend-backend integration bottlenecks, and build features that work reliably from end to end.
-            </p>
-
-            <p>
-              When building interfaces, I focus on the details that make software pleasant to use: predictable component state, clean information hierarchy, keyboard accessibility, and responsive layouts that look natural on any screen size.
-            </p>
-
-            <p className="text-sm text-[#8FA2BF] pt-1">
-              I enjoy bringing ideas to life, tackling technical challenges, and learning something new with every project I take on.
-            </p>
           </div>
-
-          {/* Right Column: Key Principles / Focus Areas */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 rounded-2xl bg-[#0D1424] border border-[#1B2A47] space-y-4 shadow-card">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-[#4DB8FF] flex items-center gap-2 font-semibold">
-                <Sparkles className="w-4 h-4 text-[#168BFF]" />
-                <span>What I focus on</span>
-              </h3>
-
-              <div className="space-y-3.5 text-sm text-[#A5B4CC]">
-                {/* Frontend (Primary Focus) */}
-                <div className="p-3 rounded-xl bg-[#101B30] border border-[#168BFF]/30">
-                  <div className="flex items-center justify-between mb-1">
-                    <strong className="text-[#F5F8FF] font-semibold flex items-center gap-2">
-                      <Code2 className="w-4 h-4 text-[#4DB8FF]" />
-                      Frontend Engineering
-                    </strong>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#4DB8FF] bg-[#168BFF]/15 px-2 py-0.5 rounded">
-                      Primary Focus
-                    </span>
-                  </div>
-                  <p className="text-xs text-[#A5B4CC] leading-relaxed mt-1">
-                    Building accessible, responsive, and maintainable interfaces with React, TypeScript, and modern component architectures.
-                  </p>
-                </div>
-
-                {/* Backend (Additional Strength) */}
-                <div className="p-3 rounded-xl bg-[#070B14] border border-[#1B2A47]">
-                  <div className="flex items-center justify-between mb-1">
-                    <strong className="text-[#F5F8FF] font-semibold flex items-center gap-2">
-                      <Database className="w-4 h-4 text-[#168BFF]" />
-                      Backend APIs &amp; Databases
-                    </strong>
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#8FA2BF] bg-[#1B2A47]/50 px-2 py-0.5 rounded">
-                      Full-Stack Strength
-                    </span>
-                  </div>
-                  <p className="text-xs text-[#A5B4CC] leading-relaxed mt-1">
-                    Developing RESTful APIs with Python and FastAPI, managing relational databases with SQL, and connecting UI to backend data.
-                  </p>
-                </div>
-
-                {/* Product & UX */}
-                <div className="p-3 rounded-xl bg-[#070B14] border border-[#1B2A47]">
-                  <div className="flex items-center justify-between mb-1">
-                    <strong className="text-[#F5F8FF] font-semibold flex items-center gap-2">
-                      <Layout className="w-4 h-4 text-[#6E82A1]" />
-                      Product &amp; UX Thinking
-                    </strong>
-                  </div>
-                  <p className="text-xs text-[#A5B4CC] leading-relaxed mt-1">
-                    Designing intuitive user journeys, eliminating unnecessary friction, and prioritizing clear user feedback.
-                  </p>
-                </div>
-              </div>
+          {/* Narrative */}
+          <div className="space-y-5 text-base sm:text-lg text-[#A5B4CC] leading-relaxed">
+            <p>
+              I enjoy working on software that solves <span className="text-[#F5F8FF] font-medium">real problems</span> and makes things easier for people. I like building clean, user-friendly interfaces with{" "}
+              <span className="text-[#8BB8FF] font-medium">React and TypeScript</span>, and I’m equally interested in what happens behind the scenes—especially{" "}
+              <span className="text-[#8BB8FF] font-medium">backend development and cloud systems</span>.
+            </p>
+            <p>
+              I’m especially interested in what happens behind the interface—how{" "}
+              <span className="text-[#F5F8FF] font-medium">APIs handle requests</span>, how{" "}
+              <span className="text-[#F5F8FF] font-medium">authentication protects data</span>, how{" "}
+              <span className="text-[#8BB8FF] font-medium">Redis</span> supports efficient processing, and how storage systems can be designed for{" "}
+              <span className="text-[#F5F8FF] font-medium">privacy, reliability, and resilience</span>.
+            </p>
+            <p>
+              My approach to learning is simple:{" "}
+              <span className="text-[#8BB8FF] font-medium">build, understand, and improve</span>. I learn by working through the details—designing{" "}
+              <span className="text-[#F5F8FF] font-medium">database schemas</span>, implementing{" "}
+              <span className="text-[#F5F8FF] font-medium">encryption at rest</span>, building APIs with{" "}
+              <span className="text-[#8BB8FF] font-medium">FastAPI</span>, and orchestrating services with{" "}
+              <span className="text-[#8BB8FF] font-medium">Docker</span>. For me, understanding the technology beneath the surface is just as important as making it work.
+            </p>
             </div>
+
+        {/* 3 Minimal Pillars */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4">
+          <div className="p-5 rounded-2xl bg-[#0D1424] border border-[#1B2A47]/70 hover:border-[#168BFF]/40 transition-colors">
+            <div className="w-8 h-8 rounded-lg bg-[#101B30] text-[#4DB8FF] flex items-center justify-center mb-3">
+              <Cloud className="w-4 h-4" />
+            </div>
+            <h3 className="text-sm font-semibold text-[#F5F8FF] mb-1.5">Cloud &amp; Systems</h3>
+            <p className="text-xs text-[#8FA2BF] leading-relaxed">
+              Designing containerized backend microservices, caching layers, and encrypted storage pools.
+            </p>
           </div>
 
-        </div>
-
-        {/* Skills Section */}
-        <div className="pt-8 border-t border-[#1B2A47]/60 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <h3 className="text-xl font-bold text-[#F5F8FF]">
-              Tools &amp; Technologies
-            </h3>
-            <span className="text-xs font-mono text-[#6E82A1]">Frontend-focused with full-stack capabilities</span>
+          <div className="p-5 rounded-2xl bg-[#0D1424] border border-[#1B2A47]/70 hover:border-[#168BFF]/40 transition-colors">
+            <div className="w-8 h-8 rounded-lg bg-[#101B30] text-[#4DB8FF] flex items-center justify-center mb-3">
+              <Code2 className="w-4 h-4" />
+            </div>
+            <h3 className="text-sm font-semibold text-[#F5F8FF] mb-1.5">Clean Web Apps</h3>
+            <p className="text-xs text-[#8FA2BF] leading-relaxed">
+              Crafting intuitive, responsive web interfaces with strict types and predictable state.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {skillsList.map((group, idx) => {
-              const isPrimary = idx === 0;
-              return (
-                <div 
-                  key={group.category}
-                  className={`p-5 rounded-xl transition-all ${
-                    isPrimary 
-                      ? 'bg-[#0D1424] border border-[#168BFF]/40 shadow-[0_0_15px_rgba(22,139,255,0.1)]' 
-                      : 'bg-[#0D1424] border border-[#1B2A47]'
-                  } space-y-3.5`}
-                >
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-xs font-mono uppercase tracking-wider text-[#4DB8FF] font-semibold">
-                      {group.category}
-                    </h4>
-                    {isPrimary && (
-                      <span className="w-2 h-2 rounded-full bg-[#168BFF] animate-pulse" title="Primary Focus" />
-                    )}
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {group.skills.map(skill => (
-                      <Badge 
-                        key={skill} 
-                        variant={isPrimary ? 'blue' : 'neutral'} 
-                        size="sm"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+          <div className="p-5 rounded-2xl bg-[#0D1424] border border-[#1B2A47]/70 hover:border-[#168BFF]/40 transition-colors">
+            <div className="w-8 h-8 rounded-lg bg-[#101B30] text-[#4DB8FF] flex items-center justify-center mb-3">
+              <Cpu className="w-4 h-4" />
+            </div>
+            <h3 className="text-sm font-semibold text-[#F5F8FF] mb-1.5">Pragmatic Engineering</h3>
+            <p className="text-xs text-[#8FA2BF] leading-relaxed">
+              Focusing on security, reliability, clean API contracts, and tools that solve real problems.
+            </p>
           </div>
         </div>
 

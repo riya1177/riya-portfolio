@@ -1,3 +1,32 @@
+export interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  keyFeatures?: string[];
+  githubUrl: string;
+  liveUrl?: string;
+  caseStudyUrl?: string;
+  featured?: boolean;
+  category: string;
+  image?: string;
+}
+
+export interface SkillCategory {
+  title: string;
+  skills: string[];
+}
+
+export interface CertificateItem {
+  title: string;
+  issuer: string;
+  link?: string;
+  badgeText?: string;
+  description?: string;
+  skills?: string[];
+  isVerified?: boolean;
+}
+
 export interface ProjectCaseStudy {
   id: string;
   slug: string;
@@ -11,18 +40,14 @@ export interface ProjectCaseStudy {
   githubUrl?: string;
   liveUrl?: string;
 
-  // Clear 7-part readable structure:
-  // 1. Overview
   overview: string;
   
-  // 2. The problem I wanted to solve
   problemIWantedToSolve: {
     coreProblem: string;
     context: string;
     keyFrustrations: string[];
   };
 
-  // 3. My approach
   myApproach: {
     summary: string;
     steps: {
@@ -32,7 +57,6 @@ export interface ProjectCaseStudy {
     }[];
   };
 
-  // 4. Design decisions
   designDecisions: {
     title: string;
     situation: string;
@@ -40,7 +64,6 @@ export interface ProjectCaseStudy {
     outcome: string;
   }[];
 
-  // 5. Technical implementation
   technicalImplementation: {
     overview: string;
     architecturePoints: string[];
@@ -51,10 +74,7 @@ export interface ProjectCaseStudy {
     }[];
   };
 
-  // 6. What I learned
   whatILearned: string[];
-
-  // 7. Next steps
   nextSteps: string[];
 }
 

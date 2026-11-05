@@ -7,25 +7,53 @@ import { siteConfig } from '../data/config';
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      if (isHomePage) {
+        const sections = siteConfig.navigation.map(nav => nav.href.replace('#', ''));
+        const scrollPosition = window.scrollY + 140;
+
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const sectionEl = document.getElementById(sections[i]);
+          if (sectionEl && sectionEl.offsetTop <= scrollPosition) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setIsOpen(false);
     if (!isHomePage && href.startsWith('#')) {
+      e.preventDefault();
       window.location.href = '/' + href;
+      return;
+    }
+
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(targetId);
+        window.history.pushState(null, '', href);
+      }
     }
   };
 
@@ -33,51 +61,59 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#070B14]/90 backdrop-blur-md border-b border-[#1B2A47] py-3.5 shadow-card'
+          ? 'bg-[#070B14]/85 backdrop-blur-md border-b border-[#1B2A47]/70 py-3 shadow-[0_4px_24px_rgba(7,11,20,0.6)]'
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo / Personal Brand */}
-          <Link to="/" className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#168BFF] rounded-lg">
-            <div className="w-8 h-8 rounded-lg bg-[#0D1424] border border-[#168BFF]/40 text-[#4DB8FF] flex items-center justify-center font-mono font-bold text-sm shadow-[0_0_12px_rgba(22,139,255,0.25)] group-hover:border-[#168BFF] group-hover:shadow-[0_0_16px_rgba(22,139,255,0.4)] transition-all">
+          <Link 
+            to="/" 
+            onClick={(e) => handleNavClick(e, '#hero')}
+            className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#168BFF] rounded-lg"
+          >
+            <div className="w-8 h-8 rounded-lg bg-[#0D1424] border border-[#168BFF]/40 text-[#4DB8FF] flex items-center justify-center font-mono font-bold text-sm shadow-[0_0_12px_rgba(22,139,255,0.25)] group-hover:border-[#168BFF] group-hover:shadow-[0_0_18px_rgba(22,139,255,0.4)] transition-all">
               R
             </div>
-            <span className="font-bold text-base text-[#F5F8FF] group-hover:text-[#4DB8FF] transition-colors tracking-tight">
+            <span className="font-semibold text-base text-[#F5F8FF] group-hover:text-[#4DB8FF] transition-colors tracking-tight">
               Riya
             </span>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            {siteConfig.navigation.map((item) => (
-              <a
-                key={item.label}
-                href={isHomePage ? item.href : `/${item.href}`}
-                onClick={() => handleNavClick(item.href)}
-                className="text-sm font-medium text-[#A5B4CC] hover:text-[#4DB8FF] transition-colors py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#168BFF] rounded"
-              >
-                {item.label}
-              </a>
-            ))}
+          <nav className="hidden md:flex items-center gap-1 bg-[#0D1424]/70 border border-[#1B2A47]/80 rounded-full px-2.5 py-1 backdrop-blur-sm">
+            {siteConfig.navigation.map((item) => {
+              const target = item.href.replace('#', '');
+              const isActive = isHomePage && activeSection === target;
+
+              return (
+                <a
+                  key={item.label}
+                  href={isHomePage ? item.href : `/${item.href}`}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#168BFF] ${
+                    isActive
+                      ? 'text-[#F5F8FF] bg-[#168BFF]/20 border border-[#168BFF]/40 shadow-[0_0_12px_rgba(22,139,255,0.2)]'
+                      : 'text-[#A5B4CC] hover:text-[#4DB8FF] hover:bg-[#101B30]/50'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Desktop Right Action */}
-          <div className="hidden lg:flex items-center gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D1424] border border-[#1B2A47] text-xs text-[#A5B4CC]">
-              <span className="w-2 h-2 rounded-full bg-[#168BFF] animate-pulse" />
-              <span>Available for roles</span>
-            </div>
-
+          {/* Desktop Right Action: Contact Button */}
+          <div className="hidden md:flex items-center gap-3">
             <a
               href="#contact"
-              onClick={() => handleNavClick('#contact')}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#101B30] hover:bg-[#13223D] border border-[#1B2A47] hover:border-[#168BFF]/50 text-[#F5F8FF] text-xs font-semibold shadow-card transition-all active:scale-[0.98]"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#101B30] hover:bg-[#168BFF] border border-[#1B2A47] hover:border-[#168BFF] text-[#F5F8FF] text-xs font-medium shadow-card hover:shadow-[0_0_16px_rgba(22,139,255,0.3)] transition-all active:scale-[0.98]"
             >
-              <span>Get In Touch</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#4DB8FF]" />
+              <span>Get in touch</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#4DB8FF] group-hover:text-white" />
             </a>
           </div>
 
@@ -89,7 +125,7 @@ export const Navbar: React.FC = () => {
             aria-label="Toggle navigation menu"
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-6 h-6 text-[#4DB8FF]" /> : <Menu className="w-6 h-6" />}
           </button>
 
         </div>
@@ -102,35 +138,39 @@ export const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-[#0D1424] border-b border-[#1B2A47] overflow-hidden"
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="md:hidden bg-[#0D1424]/95 backdrop-blur-xl border-b border-[#1B2A47] overflow-hidden shadow-2xl"
           >
-            <div className="px-6 py-6 flex flex-col gap-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#101B30] border border-[#1B2A47] text-xs text-[#A5B4CC] w-fit">
-                <span className="w-2 h-2 rounded-full bg-[#168BFF] animate-pulse" />
-                <span>Open to frontend opportunities</span>
-              </div>
+            <div className="px-6 py-5 flex flex-col gap-3">
+              <div className="flex flex-col divide-y divide-[#1B2A47]/40">
+                {siteConfig.navigation.map((item) => {
+                  const target = item.href.replace('#', '');
+                  const isActive = isHomePage && activeSection === target;
 
-              <div className="flex flex-col gap-2 pt-2 border-t border-[#1B2A47]">
-                {siteConfig.navigation.map((item) => (
-                  <a
-                    key={item.label}
-                    href={isHomePage ? item.href : `/${item.href}`}
-                    onClick={() => handleNavClick(item.href)}
-                    className="text-base font-medium text-[#F5F8FF] hover:text-[#4DB8FF] py-2 border-b border-[#1B2A47]/40"
-                  >
-                    {item.label}
-                  </a>
-                ))}
+                  return (
+                    <a
+                      key={item.label}
+                      href={isHomePage ? item.href : `/${item.href}`}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className={`text-sm font-medium py-2.5 transition-colors flex items-center justify-between ${
+                        isActive ? 'text-[#4DB8FF] font-semibold' : 'text-[#F5F8FF] hover:text-[#4DB8FF]'
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#168BFF]" />}
+                    </a>
+                  );
+                })}
               </div>
 
               <div className="pt-2">
                 <a
                   href="#contact"
-                  onClick={() => handleNavClick('#contact')}
-                  className="block w-full text-center py-2.5 rounded-xl bg-[#168BFF] hover:bg-[#4DB8FF] text-[#F5F8FF] text-sm font-semibold shadow-[0_0_15px_rgba(22,139,255,0.3)]"
+                  onClick={(e) => handleNavClick(e, '#contact')}
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-[#168BFF] hover:bg-[#4DB8FF] text-[#F5F8FF] text-xs font-semibold text-center transition-all shadow-[0_0_15px_rgba(22,139,255,0.3)]"
                 >
-                  Get In Touch
+                  <span>Contact Me</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
             </div>

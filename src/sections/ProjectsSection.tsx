@@ -1,183 +1,238 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { caseStudies } from '../data/portfolioData';
-import { StorageInteractiveDemo } from '../components/StorageInteractiveDemo';
-import { InterviewCoachInteractiveDemo } from '../components/InterviewCoachInteractiveDemo';
-import { Badge } from '../components/Badge';
-import { Button } from '../components/Button';
+import { motion } from 'framer-motion';
+import { 
+  Github, 
+  ArrowUpRight, 
+  ExternalLink, 
+  HardDrive, 
+  Sparkles, 
+  CheckCircle2, 
+  ShieldCheck,
+  Cpu,
+  Layers,
+  ArrowRight
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { projectsData } from '../data/portfolioData';
 
 export const ProjectsSection: React.FC = () => {
-  const project1 = caseStudies.find(p => p.id === 'cloud-storage')!;
-  const project2 = caseStudies.find(p => p.id === 'ai-interview-coach')!;
+  const featuredProject = projectsData.find(p => p.id === 'private-cloud-storage')!;
+  const otherProjects = projectsData.filter(p => p.id !== 'private-cloud-storage');
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-[#070B14] border-t border-[#1B2A47]/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28">
+    <section 
+      id="projects" 
+      className="py-20 md:py-28 bg-[#070B14] border-t border-[#1B2A47]/50 relative overflow-hidden"
+    >
+      {/* Background radial glow */}
+      <div 
+        className="absolute top-1/3 -right-48 w-96 h-96 bg-[#168BFF]/5 rounded-full blur-3xl pointer-events-none" 
+        aria-hidden="true" 
+      />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         
-        {/* Section Header as requested */}
-        <div className="max-w-2xl space-y-3">
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#4DB8FF] font-semibold">
+        {/* Section Header */}
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#4DB8FF] font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-[#168BFF]" />
-            <span>MY WORK</span>
+            <span>FEATURED WORK</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#F5F8FF]">
-            Things I've built.
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F5F8FF]">
+            Projects I've Built.
           </h2>
 
-          <p className="text-base sm:text-lg text-[#A5B4CC] leading-relaxed">
-            A couple of projects I've spent time building, learning from, and improving.
+          <p className="text-base text-[#A5B4CC] max-w-2xl">
+            A selection of practical applications spanning self-hosted cloud storage, AI tools, and full-stack systems.
           </p>
         </div>
 
         {/* ========================================================
-            PROJECT 1: PRIVATE CLOUD STORAGE
+            FEATURED PROJECT SPOTLIGHT: PRIVATE CLOUD STORAGE
            ======================================================== */}
-        <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#0D1424] border border-[#1B2A47] hover:border-[#168BFF]/40 transition-all duration-300 shadow-card">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-3xl bg-[#0D1424] border border-[#168BFF]/40 hover:border-[#168BFF]/70 transition-all duration-300 shadow-[0_4px_30px_rgba(7,11,20,0.8)] hover:shadow-[0_0_30px_rgba(22,139,255,0.18)] overflow-hidden"
+        >
+          <div className="p-7 sm:p-10 lg:p-12 space-y-8">
             
-            {/* Project Details Left */}
-            <div className="lg:col-span-5 space-y-5">
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="blue" size="sm">
-                    {project1.role}
-                  </Badge>
-                  <span className="text-xs font-mono text-[#6E82A1]">
-                    {project1.timeline}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F8FF]">
-                  {project1.title}
-                </h3>
-                
-                <p className="text-xs font-mono text-[#4DB8FF]">
-                  {project1.subtitle}
-                </p>
+            {/* Header: Badge & Category */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#168BFF]/15 border border-[#168BFF]/35 text-xs font-mono text-[#4DB8FF] font-semibold">
+                <HardDrive className="w-3.5 h-3.5 text-[#168BFF]" />
+                <span>Featured Project · Cloud Storage &amp; Systems</span>
               </div>
 
-              <p className="text-sm text-[#A5B4CC] leading-relaxed">
-                {project1.description}
-              </p>
-
-              {/* Technologies Used */}
-              <div className="space-y-2 pt-1">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#6E82A1] block">
-                  Technologies
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {project1.technologies.map(tech => (
-                    <Badge key={tech} variant="neutral" size="sm">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* View Case Study Action */}
-              <div className="pt-2">
-                <Button
-                  to={`/projects/${project1.slug}`}
-                  variant="primary"
-                  size="md"
-                  iconRight={<ArrowUpRight className="w-4 h-4" />}
-                >
-                  View Case Study
-                </Button>
+              <div className="flex items-center gap-2 text-xs font-mono text-[#A5B4CC]">
+                <ShieldCheck className="w-4 h-4 text-[#4DB8FF]" />
+                <span>Fernet Symmetric Encryption + RAID-1 Mirror</span>
               </div>
             </div>
 
-            {/* Interactive Preview Right */}
-            <div className="lg:col-span-7">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-[#6E82A1] font-mono">
-                  <span className="flex items-center gap-1.5 text-[#4DB8FF]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#168BFF] animate-pulse" />
-                    Interactive File Explorer
-                  </span>
-                  <span>Try clicking files or upload</span>
-                </div>
-                <StorageInteractiveDemo />
+            {/* Title & Description */}
+            <div className="space-y-3 max-w-3xl">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#F5F8FF] tracking-tight">
+                {featuredProject.title}
+              </h3>
+              
+              <p className="text-base sm:text-lg text-[#A5B4CC] leading-relaxed">
+                {featuredProject.description}
+              </p>
+            </div>
+
+            {/* Key Features Breakdown */}
+            <div className="space-y-3 pt-2 border-t border-[#1B2A47]/60">
+              <div className="text-xs font-mono uppercase tracking-wider text-[#4DB8FF] font-semibold">
+                Key Architectural Features
               </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {featuredProject.keyFeatures?.map((feature, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#A5B4CC] leading-relaxed">
+                    <CheckCircle2 className="w-4 h-4 text-[#168BFF] shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Technologies */}
+            <div className="space-y-2 pt-2 border-t border-[#1B2A47]/60">
+              <div className="text-xs font-mono uppercase tracking-wider text-[#6E82A1]">
+                Technologies &amp; Architecture
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {featuredProject.technologies.map(tech => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 text-xs font-mono rounded-lg bg-[#101B30] border border-[#1B2A47] text-[#F5F8FF]"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Links */}
+            <div className="pt-3 flex flex-wrap items-center gap-4">
+              <a
+                href={featuredProject.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#101B30] hover:bg-[#13223D] border border-[#1B2A47] hover:border-[#168BFF]/50 text-[#F5F8FF] text-xs font-semibold shadow-card transition-all"
+              >
+                <Github className="w-4 h-4 text-[#4DB8FF]" />
+                <span>GitHub Repository</span>
+              </a>
+
+              {featuredProject.caseStudyUrl && (
+                <Link
+                  to={featuredProject.caseStudyUrl}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#168BFF] hover:bg-[#4DB8FF] text-[#F5F8FF] text-xs font-semibold shadow-[0_0_15px_rgba(22,139,255,0.3)] transition-all"
+                >
+                  <span>View Case Study &amp; Demo</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* ========================================================
-            PROJECT 2: AI INTERVIEW COACH
+            OTHER NOTABLE PROJECTS GRID
            ======================================================== */}
-        <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#0D1424] border border-[#1B2A47] hover:border-[#168BFF]/40 transition-all duration-300 shadow-card">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-            
-            {/* Project Details Left */}
-            <div className="lg:col-span-5 space-y-5">
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant="blue" size="sm">
-                    {project2.role}
-                  </Badge>
-                  <span className="text-xs font-mono text-[#6E82A1]">
-                    {project2.timeline}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          {otherProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="p-6 sm:p-7 rounded-2xl bg-[#0D1424] border border-[#1B2A47] hover:border-[#168BFF]/50 transition-all duration-300 shadow-card flex flex-col justify-between group"
+            >
+              <div className="space-y-4">
+                {/* Category & Title */}
+                <div>
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-[#4DB8FF] block mb-1">
+                    {project.category}
                   </span>
+                  <h3 className="text-xl font-bold text-[#F5F8FF] group-hover:text-[#4DB8FF] transition-colors leading-snug">
+                    {project.title}
+                  </h3>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F8FF]">
-                  {project2.title}
-                </h3>
-                
-                <p className="text-xs font-mono text-[#4DB8FF]">
-                  {project2.subtitle}
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-[#A5B4CC] leading-relaxed">
+                  {project.description}
                 </p>
-              </div>
 
-              <p className="text-sm text-[#A5B4CC] leading-relaxed">
-                {project2.description}
-              </p>
+                {/* Key Features */}
+                {project.keyFeatures && (
+                  <div className="space-y-1.5 pt-1">
+                    {project.keyFeatures.slice(0, 2).map((feat, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs text-[#8FA2BF] leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#168BFF] mt-1.5 shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-              {/* Technologies Used */}
-              <div className="space-y-2 pt-1">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#6E82A1] block">
-                  Technologies
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {project2.technologies.map(tech => (
-                    <Badge key={tech} variant="neutral" size="sm">
-                      {tech}
-                    </Badge>
-                  ))}
+                {/* Technologies */}
+                <div className="pt-2">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.technologies.map(tech => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 text-[11px] font-mono rounded bg-[#101B30] border border-[#1B2A47] text-[#A5B4CC]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* View Case Study Action */}
-              <div className="pt-2">
-                <Button
-                  to={`/projects/${project2.slug}`}
-                  variant="primary"
-                  size="md"
-                  iconRight={<ArrowUpRight className="w-4 h-4" />}
+              {/* Card Footer: Links */}
+              <div className="pt-5 mt-6 border-t border-[#1B2A47]/60 flex items-center justify-between gap-3">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono text-[#A5B4CC] hover:text-[#4DB8FF] transition-colors"
                 >
-                  View Case Study
-                </Button>
-              </div>
-            </div>
+                  <Github className="w-3.5 h-3.5" />
+                  <span>Code</span>
+                </a>
 
-            {/* Interactive Preview Right */}
-            <div className="lg:col-span-7">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-[#6E82A1] font-mono">
-                  <span className="flex items-center gap-1.5 text-[#4DB8FF]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#168BFF] animate-pulse" />
-                    Interactive Rehearsal Sandbox
-                  </span>
-                  <span>Try toggling modes &amp; recording</span>
-                </div>
-                <InterviewCoachInteractiveDemo />
-              </div>
-            </div>
+                {project.caseStudyUrl && (
+                  <Link
+                    to={project.caseStudyUrl}
+                    className="inline-flex items-center gap-1 text-xs font-mono text-[#4DB8FF] hover:underline"
+                  >
+                    <span>Case Study</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                )}
 
-          </div>
+                {project.liveUrl && !project.caseStudyUrl && (
+                  <a
+                    href={project.liveUrl}
+                    className="inline-flex items-center gap-1 text-xs font-mono text-[#4DB8FF] hover:underline"
+                  >
+                    <span>Current Site</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>
