@@ -120,10 +120,6 @@ export const skillCategoriesData: SkillCategory[] = [
     title: 'Cloud & DevOps',
     skills: ['AWS', 'Docker', 'Redis'],
   },
-  {
-    title: 'Tools',
-    skills: ['Git', 'GitHub', 'Postman', 'Linux / Bash'],
-  },
 ];
 
 export const certificatesData: CertificateItem[] = [
