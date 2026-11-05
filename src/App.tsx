@@ -9,7 +9,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/riya-portfolio">
       <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-[#070B14] text-[#F5F8FF] font-sans selection:bg-[#168BFF]/30 selection:text-[#4DB8FF]">
         <Navbar />
